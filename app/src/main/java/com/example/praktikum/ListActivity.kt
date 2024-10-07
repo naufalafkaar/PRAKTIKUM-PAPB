@@ -1,21 +1,26 @@
+// ListActivity.kt
 package com.example.praktikum
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.praktikum.ui.theme.PRAKTIKUMTheme
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
 class ListActivity : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -24,15 +29,45 @@ class ListActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    JadwalKuliahScreen()
+                    Scaffold(
+                        topBar = {
+                            TopAppBar(
+                                title = { Text("Jadwal Kuliah") },
+                                actions = {
+                                    // Gunakan GithubIconButton dengan onClick untuk navigasi
+                                    GithubIconButton {
+                                        val intent = Intent(this@ListActivity, GithubProfileActivity::class.java)
+                                        startActivity(intent)
+                                    }
+                                }
+                            )
+                        }
+                    ) { paddingValues ->
+                        // Teruskan padding dari Scaffold ke JadwalKuliahScreen
+                        JadwalKuliahScreen(padding = paddingValues)
+                    }
                 }
             }
         }
     }
 }
 
+// Fungsi composable untuk tombol dengan ikon GitHub
 @Composable
-fun JadwalKuliahScreen() {
+fun GithubIconButton(onClick: () -> Unit) {
+    IconButton(onClick = onClick) {
+        // Memuat gambar ikon dari drawable menggunakan painterResource
+        Image(
+            painter = painterResource(id = R.drawable.github_mark), // Sesuaikan nama file dengan yang ada di drawable
+            contentDescription = "GitHub Icon",
+            modifier = Modifier.size(24.dp) // Menyesuaikan ukuran ikon
+        )
+    }
+}
+
+// Fungsi composable untuk menampilkan Jadwal Kuliah dengan parameter padding
+@Composable
+fun JadwalKuliahScreen(padding: PaddingValues) {
     val firestore = FirebaseFirestore.getInstance()
     val jadwalList = remember { mutableStateListOf<MataKuliah>() }
     var isLoading by remember { mutableStateOf(true) }
@@ -55,6 +90,7 @@ fun JadwalKuliahScreen() {
             jadwalList.addAll(data)
         } catch (e: Exception) {
             Log.e("Firestore", "Error fetching documents: ${e.localizedMessage}")
+            errorMessage = e.localizedMessage ?: "Error fetching data"
         } finally {
             isLoading = false
         }
@@ -63,6 +99,7 @@ fun JadwalKuliahScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .padding(padding) // Gunakan padding dari Scaffold
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -97,6 +134,7 @@ fun JadwalKuliahScreen() {
     }
 }
 
+// Fungsi composable untuk menampilkan kartu kuliah
 @Composable
 fun KuliahCard(mataKuliah: MataKuliah) {
     Card(
