@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.praktikum.MataKuliah
 import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "tugas_kuliah")
@@ -14,11 +15,11 @@ data class TugasKuliahEntity(
     var id: Int = 0,
 
     @ColumnInfo(name = "matkul")
-    var matkul: String,
+    var mataKuliah: String,
 
     @ColumnInfo(name = "detail_tugas")
     var detailTugas: String,
 
     @ColumnInfo(name = "selesai")
-    var selesai: Boolean = false // default false saat dibuat
+    var isDone: Boolean = false // default false saat dibuat
 ) : Parcelable
