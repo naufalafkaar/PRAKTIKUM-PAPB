@@ -2,7 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
-    id("kotlin-kapt") // Tambahkan plugin kapt untuk Room
+    id("kotlin-kapt")
+    //id("com.google.devtools.ksp")
     id("kotlin-parcelize")
 }
 
@@ -53,12 +54,11 @@ android {
 }
 
 dependencies {
-    val roomVersion = "2.5.2"
-
-    implementation("androidx.room:room-runtime:$roomVersion")
-    kapt("androidx.room:room-compiler:$roomVersion")
-    implementation("androidx.room:room-ktx:$roomVersion")
-    implementation("androidx.navigation:navigation-compose:2.7.7")
+    implementation ("androidx.compose.ui:ui:1.7.4") // Core Compose UI
+    implementation ("androidx.compose.material:material:1.7.4") // Material Design
+    implementation (libs.material3) // Material3 Components
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.6")
+    implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -70,8 +70,8 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
     implementation("com.google.firebase:firebase-firestore:24.0.0")
-    implementation("androidx.compose.material3:material3:1.0.0")
-    implementation("androidx.compose.ui:ui:1.2.0")
+    implementation("androidx.compose.material3:material3:1.3.0")
+    implementation("androidx.compose.ui:ui:1.7.4")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.0")
     implementation("io.coil-kt:coil-compose:2.0.0")
 
@@ -80,12 +80,7 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     // Kotlin Coroutine support
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
-
-    // Room dependencies
-    implementation("androidx.room:room-runtime:2.4.2") // Versi Room runtime
-    kapt("androidx.room:room-compiler:2.4.2") // Room compiler untuk menghasilkan kode Room
-    implementation("androidx.room:room-ktx:2.4.2") // Room KTX untuk dukungan coroutine
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
     // Coil untuk gambar
     implementation("io.coil-kt:coil-compose:2.0.0")
@@ -102,4 +97,8 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.room.runtime)
+    kapt("androidx.room:room-compiler:2.6.1")
+    implementation(libs.androidx.room.ktx)
 }
