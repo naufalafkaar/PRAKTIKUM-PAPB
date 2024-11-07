@@ -1,5 +1,5 @@
 // MainNavigation.kt
-package com.example.praktikum
+package com.example.praktikum.navigation
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,7 +11,6 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -19,6 +18,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.praktikum.activity.GithubProfileScreen
+import com.example.praktikum.activity.JadwalKuliahScreen
+import com.example.praktikum.screen.TugasKuliahScreen
 
 // List of screens in the bottom navigation, adding Logout as a new item
 sealed class BottomNavItem(val route: String, val title: String, val icon: androidx.compose.ui.graphics.vector.ImageVector) {

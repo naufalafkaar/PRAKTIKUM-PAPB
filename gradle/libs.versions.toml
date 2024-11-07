@@ -1,10 +1,13 @@
 [versions]
 agp = "8.6.1"
+cameraCore = "1.4.0"
+guava = "32.1.3-android"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
+kotlinxCoroutinesPlayServices = "1.7.3"
 lifecycleRuntimeKtx = "2.8.6"
 activityCompose = "1.9.3"
 composeBom = "2024.10.00"
@@ -24,11 +27,18 @@ roomKtx = "2.6.1"
 roomVersion = "2.6.1"
 
 [libraries]
+androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "cameraCore" }
+androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "cameraCore" }
+androidx-camera-extensions = { module = "androidx.camera:camera-extensions", version.ref = "cameraCore" }
+androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "cameraCore" }
+androidx-camera-video = { module = "androidx.camera:camera-video", version.ref = "cameraCore" }
+androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "cameraCore" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 androidx-room-compiler = { module = "androidx.room:room-compiler" }
 androidx-room-compiler-v240 = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
 androidx-room-runtime = { module = "androidx.room:room-runtime" }
+guava = { module = "com.google.guava:guava", version.ref = "guava" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -45,6 +55,7 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+kotlinx-coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "kotlinxCoroutinesPlayServices" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }

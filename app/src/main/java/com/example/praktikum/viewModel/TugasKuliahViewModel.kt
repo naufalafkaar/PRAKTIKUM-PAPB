@@ -1,5 +1,5 @@
 // TugasKuliahViewModel.kt
-package com.example.praktikum
+package com.example.praktikum.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -35,6 +35,14 @@ class TugasKuliahViewModel(application: Application) : AndroidViewModel(applicat
             loadTugas() // Refresh data setelah insert
         }
     }
+    // TugasKuliahViewModel.kt
+    fun deleteTugas(tugas: Tugas) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteTugas(tugas)
+            loadTugas() // Refresh data setelah delete
+        }
+    }
+
 
     fun updateTugasStatus(id: Int, isDone: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {

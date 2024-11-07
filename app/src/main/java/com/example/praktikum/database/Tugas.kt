@@ -1,3 +1,4 @@
+// Tugas.kt
 package com.example.praktikum.database
 
 import android.os.Parcelable
@@ -13,5 +14,7 @@ class Tugas (
     @ColumnInfo(name = "id") var id: Int = 0,
     @ColumnInfo(name = "matkul") var matkul: String,
     @ColumnInfo(name = "detail_tugas") var detailTugas: String,
+    @ColumnInfo(name = "gambar_nama") var gambarNama: String = "",  // Tambahkan nama gambar
+    @ColumnInfo(name = "gambar_uri") var gambarUri: String? = null,  // Tambahkan URI gambar
     @ColumnInfo(name = "selesai") var selesai: Boolean,
 ) : Parcelable

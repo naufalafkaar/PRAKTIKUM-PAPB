@@ -1,5 +1,5 @@
 // GithubProfileActivity.kt
-package com.example.praktikum
+package com.example.praktikum.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

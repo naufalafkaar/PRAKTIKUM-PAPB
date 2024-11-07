@@ -1,7 +1,6 @@
 package com.example.praktikum.database
 
 import android.app.Application
-import androidx.lifecycle.LiveData
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -19,6 +18,11 @@ class TugasRepository(application: Application) {
     suspend fun insertTugas(tugas: Tugas) {
         tugasDao.insertTugas(tugas)
     }
+
+    suspend fun deleteTugas(tugas: Tugas) {
+        tugasDao.deleteTugas(tugas)
+    }
+
 
     suspend fun updateTugas(tugas: Tugas) {
         tugasDao.updateTugas(tugas)

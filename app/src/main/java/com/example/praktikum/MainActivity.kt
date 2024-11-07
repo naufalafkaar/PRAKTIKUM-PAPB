@@ -1,8 +1,11 @@
 package com.example.praktikum
 
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.ui.Modifier
@@ -10,9 +13,12 @@ import com.example.praktikum.ui.theme.PRAKTIKUMTheme
 import com.google.firebase.auth.FirebaseAuth
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.navigation.compose.rememberNavController
+import androidx.core.content.ContextCompat
+import com.example.praktikum.navigation.MainScreen
+import android.Manifest
 
 
 class MainActivity : ComponentActivity() {
@@ -57,6 +63,35 @@ fun MainApp(auth: FirebaseAuth) {
         }
     }
 }
+@Composable
+fun RequestCameraPermission(
+    onPermissionGranted: () -> Unit,
+    onPermissionDenied: () -> Unit
+) {
+    val context = LocalContext.current
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            // Jika izin diberikan, panggil fungsi yang diberikan
+            onPermissionGranted()
+        } else {
+            // Jika izin ditolak, panggil fungsi yang diberikan
+            onPermissionDenied()
+        }
+    }
+
+    // LaunchedEffect untuk meminta izin
+    LaunchedEffect(Unit) {
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
+            != PackageManager.PERMISSION_GRANTED) {
+            launcher.launch(Manifest.permission.CAMERA)
+        } else {
+            onPermissionGranted()
+        }
+    }
+}
+
 
 @Composable
 fun LoginScreen(auth: FirebaseAuth, onLoginSuccess: () -> Unit) {

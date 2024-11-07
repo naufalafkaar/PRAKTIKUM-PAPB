@@ -1,5 +1,5 @@
 // ListActivity.kt
-package com.example.praktikum
+package com.example.praktikum.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -16,9 +16,10 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.example.praktikum.entity.MataKuliah
+import com.example.praktikum.R
 import com.example.praktikum.ui.theme.PRAKTIKUMTheme
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await

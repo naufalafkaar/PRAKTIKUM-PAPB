@@ -1,4 +1,4 @@
-package com.example.praktikum
+package com.example.praktikum.entity
 
 data class MataKuliah(
     val hari: String = "",
